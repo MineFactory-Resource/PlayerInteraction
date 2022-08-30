@@ -1,0 +1,4 @@
+name: Playerinteraction
+version: '${project.version}'
+main: net.teamuni.playerinteraction.Playerinteraction
+api-version: 1.18
