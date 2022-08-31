@@ -45,7 +45,6 @@ public final class Playerinteraction extends JavaPlugin implements Listener {
                     String clickPlayerName = event.getRightClicked().getName();
                     String replacedShiftRightClick = (shiftRightClickCommand.replace("%player%", clickPlayerName));
                     player.performCommand(replacedShiftRightClick);
-                    System.out.println("플레이어의 쉬프트+우클릭 명령어가 실행되었습니다!");
                 }
             }
         }
