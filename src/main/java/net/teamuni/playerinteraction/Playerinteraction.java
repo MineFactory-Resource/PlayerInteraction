@@ -42,7 +42,7 @@ public final class Playerinteraction extends JavaPlugin implements Listener {
         if (event.getRightClicked().getType().equals(EntityType.PLAYER) && player.isSneaking()) {
             if(event.getHand().equals(EquipmentSlot.HAND)) {
                 if (rightClickWorld.stream().anyMatch(currentWorld -> player.getWorld().equals(Bukkit.getWorld(currentWorld)))) {
-                    String clickPlayerName = (event.getRightClicked()).getName();
+                    String clickPlayerName = event.getRightClicked().getName();
                     String replacedShiftRightClick = (shiftRightClickCommand.replace("%player%", clickPlayerName));
                     player.performCommand(replacedShiftRightClick);
                     System.out.println("플레이어의 쉬프트+우클릭 명령어가 실행되었습니다!");
