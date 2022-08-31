@@ -41,7 +41,7 @@ public final class Playerinteraction extends JavaPlugin implements Listener {
         List<String> rightClickWorld = getConfig().getStringList("enable_world");
         if (event.getRightClicked().getType().equals(EntityType.PLAYER) && player.isSneaking()) {
             if(event.getHand().equals(EquipmentSlot.HAND)) {
-                if (rightClickWorld.stream().anyMatch(current_world -> player.getWorld().equals(Bukkit.getWorld(current_world)))) {
+                if (rightClickWorld.stream().anyMatch(currentWorld -> player.getWorld().equals(Bukkit.getWorld(currentWorld)))) {
                     String clickPlayerName = (event.getRightClicked()).getName();
                     String replacedShiftRightClick = (shiftRightClickCommand.replace("%player%", clickPlayerName));
                     player.performCommand(replacedShiftRightClick);
