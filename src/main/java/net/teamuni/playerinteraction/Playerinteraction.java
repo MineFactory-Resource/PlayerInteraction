@@ -6,6 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.List;
@@ -36,13 +37,15 @@ public final class Playerinteraction extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onPlayerInteractAtEntity(PlayerInteractEntityEvent event) {
-        Player p = event.getPlayer();
+        Player player = event.getPlayer();
         List<String> rightClickWorld = getConfig().getStringList("enable_world");
-        if (event.getRightClicked().getType().equals(EntityType.PLAYER) && p.isSneaking()) {
-            if (rightClickWorld.stream().anyMatch(current_world -> p.getWorld().equals(Bukkit.getWorld(current_world)))) {
-                String clickPlayerName = (event.getRightClicked()).getName();
-                String replacedShiftRightClick = (shiftRightClickCommand.replace("%player%", clickPlayerName));
-                p.performCommand(replacedShiftRightClick);
+        if (event.getRightClicked().getType().equals(EntityType.PLAYER) && player.isSneaking()) {
+            if (event.getHand().equals(EquipmentSlot.HAND)) {
+                if (rightClickWorld.stream().anyMatch(currentWorld -> player.getWorld().equals(Bukkit.getWorld(currentWorld)))) {
+                    String clickPlayerName = event.getRightClicked().getName();
+                    String replacedShiftRightClick = shiftRightClickCommand.replace("%player%", clickPlayerName);
+                    player.performCommand(replacedShiftRightClick);
+                }
             }
         }
     }
